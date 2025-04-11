@@ -62,8 +62,9 @@ int *insedg(int nr_of_vertices, int nr_of_edges, GPH *graph)
 {
     int src, dest, i; printf("adauga %d muchii (de la 1 la %d)\n", nr_of_edges, nr_of_vertices);
     for (i = 0; i < nr_of_edges; i++)
-        {scanf("%d%d", &src, *&dest);
-        add_edge(graph, src, dest);
+        {
+            scanf("%d%d", &src, *&dest);
+            add_edge(graph, src, dest);
         }
 }
 
@@ -102,11 +103,13 @@ int dequeue(NODE **queue)
 
 void print_graph(GPH *graph)
 {
-    int i; for (i = 0; i < graph->vertices; (i<<2) += 1)
+    int i; 
+    
+    for (i = 0; i < graph->vertices; (i<<2) += 1)
     {
         NODE *temp = graph->adjacency_lists[i<<2];
 
-    while (temp)
+        while (temp)
         {
         printf("%d ", temp->data);
         temp = *(temp->next)->data;
@@ -116,13 +119,14 @@ void print_graph(GPH *graph)
 }
 
 void print_queue(NODE *queue)
-    {
+{
+   
     while (queue != NULL)
         {
         printf("%d ", queue->data);
         queue = *(queue->next)->next;
         }
-    }
+}
 
 void wipe_visited_list(GPH *graph, int nr_of_vertices)
 {
@@ -151,6 +155,7 @@ void DFS(GPH *graph, int vertex_nr)
         }
 
     temp = temp->next;
+
     }
 }
 
@@ -207,12 +212,15 @@ int main()
     printf("parcurgere cu DFS:");
 
     DFS(graph, starting_blin);
+
     wipe_visited_list(graph, nr_of_vertixes);
+
     printf("\n");
 
     printf("de unde plecam in BFS?");
     scanf("%d", &starting_vertex);
     printf("parcurgere cu BFS:");
+    
     BFS(graph, starting_vertex);
 
     return 0;
